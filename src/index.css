@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AI ContentForge Design System - Modern AI SaaS Platform
+All colors MUST be HSL format for consistency.
+*/
+
+@layer base {
+  :root {
+    /* Base Colors - AI ContentForge Theme */
+    --background: 240 10% 98%;
+    --foreground: 240 15% 15%;
+
+    /* Card Components */
+    --card: 0 0% 100%;
+    --card-foreground: 240 15% 15%;
+
+    /* Interactive Elements */
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 15% 15%;
+
+    /* AI Brand Colors - Purple to Blue Gradient Theme */
+    --primary: 258 90% 66%;  /* Vibrant purple */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 266 85% 78%;  /* Lighter purple for glows */
+
+    /* Secondary Colors */
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 15% 15%;
+
+    /* Muted Elements */
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 45%;
+
+    /* Accent Colors */
+    --accent: 217 91% 60%;  /* Bright blue accent */
+    --accent-foreground: 0 0% 100%;
+
+    /* Status Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    /* UI Elements */
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 258 90% 66%;
+
+    /* Gradients for AI Theme */
+    --gradient-primary: linear-gradient(135deg, hsl(258 90% 66%), hsl(217 91% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(266 85% 78%), hsl(220 70% 70%));
+    --gradient-subtle: linear-gradient(180deg, hsl(240 10% 98%), hsl(240 5% 96%));
+
+    /* Shadows with brand colors */
+    --shadow-glow: 0 0 40px hsl(258 90% 66% / 0.3);
+    --shadow-card: 0 4px 16px hsl(240 15% 15% / 0.1);
+    --shadow-elevated: 0 12px 32px hsl(240 15% 15% / 0.15);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    /* Sidebar (keeping existing for compatibility) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark Mode - AI ContentForge Theme */
+    --background: 240 15% 6%;
+    --foreground: 240 5% 90%;
+
+    --card: 240 12% 10%;
+    --card-foreground: 240 5% 90%;
+
+    --popover: 240 12% 10%;
+    --popover-foreground: 240 5% 90%;
+
+    /* AI Brand Colors - Adjusted for dark mode */
+    --primary: 258 85% 70%;  /* Slightly brighter purple for dark */
+    --primary-foreground: 240 15% 6%;
+    --primary-glow: 266 80% 75%;
+
+    --secondary: 240 8% 15%;
+    --secondary-foreground: 240 5% 90%;
+
+    --muted: 240 8% 15%;
+    --muted-foreground: 240 5% 60%;
+
+    --accent: 217 85% 65%;  /* Brighter blue for dark mode */
+    --accent-foreground: 240 15% 6%;
+
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 240 15% 6%;
+    --success: 142 70% 45%;
+    --success-foreground: 240 15% 6%;
+
+    --border: 240 8% 20%;
+    --input: 240 8% 20%;
+    --ring: 258 85% 70%;
+
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(258 85% 70%), hsl(217 85% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(266 80% 75%), hsl(220 65% 70%));
+    --gradient-subtle: linear-gradient(180deg, hsl(240 15% 6%), hsl(240 12% 10%));
+
+    /* Dark mode shadows */
+    --shadow-glow: 0 0 40px hsl(258 85% 70% / 0.4);
+    --shadow-card: 0 4px 16px hsl(240 15% 6% / 0.3);
+    --shadow-elevated: 0 12px 32px hsl(240 15% 6% / 0.4);
+
+    /* Sidebar dark mode */
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
