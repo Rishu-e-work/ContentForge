@@ -16,33 +16,45 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    let ignore = false;
+useEffect(() => {
+  let ignore = false;
 
-    const initAuth = async () => {
-      const { data, error } = await supabase.auth.getSession();
-
-      if (!ignore) {
-        setSession(data.session);
-        setUser(data.session?.user ?? null);
-        setLoading(false);
+  const initAuth = async () => {
+    // 👇 Exchange the hash fragment (access_token, etc.) for a session
+    if (window.location.hash.includes("access_token")) {
+      const { error } = await supabase.auth.exchangeCodeForSession(window.location.hash);
+      if (error) {
+        console.error("Error exchanging code for session:", error.message);
+      } else {
+        // 👇 Clean up the hash from the URL
+        window.history.replaceState({}, document.title, window.location.pathname);
       }
-    };
+    }
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!ignore) {
-        setSession(session);
-        setUser(session?.user ?? null);
-      }
-    });
+    // 👇 Get current session (either after exchange or from existing session)
+    const { data } = await supabase.auth.getSession();
+    if (!ignore) {
+      setSession(data.session);
+      setUser(data.session?.user ?? null);
+      setLoading(false);
+    }
+  };
 
-    initAuth();
+  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    if (!ignore) {
+      setSession(session);
+      setUser(session?.user ?? null);
+    }
+  });
 
-    return () => {
-      ignore = true;
-      listener.subscription.unsubscribe();
-    };
-  }, []);
+  initAuth();
+
+  return () => {
+    ignore = true;
+    listener.subscription.unsubscribe();
+  };
+}, []);
+
 
   const signOut = async () => {
     await supabase.auth.signOut();
